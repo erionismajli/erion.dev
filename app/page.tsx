@@ -256,7 +256,7 @@ export default function Home() {
               >
                 <div className="relative overflow-hidden">
                   <Image
-                    src="https://private-user-images.githubusercontent.com/67877624/310612055-f7809015-da9e-4284-9839-2bfac7709077.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjIxMTE1NjUsIm5iZiI6MTc2MjExMTI2NSwicGF0aCI6Ii82Nzg3NzYyNC8zMTA2MTIwNTUtZjc4MDkwMTUtZGE5ZS00Mjg0LTk4MzktMmJmYWM3NzA5MDc3LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTExMDIlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUxMTAyVDE5MjEwNVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTc1ZjViNTgyMTc4ZDY4YjQ4ZTkxYjc1ZGExYjQyYTQ0YTRiODFhYzA0ZDcyZmY1OGQxZGNjZjA4YWFhYzc2YzUmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.al_M-5Gj-rVe6Iu-xePo7idKVelSeNJWMym14s2r5tA"
+                    src="https://arberdev.com/mealpath.png?height=250&width=350"
                     alt="MealPath.OrderManagement"
                     width={1200}
                     height={675}
