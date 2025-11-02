@@ -66,7 +66,7 @@ export default function Home() {
             <a href="#skills" onClick={(e) => handleNavClick(e, '#skills')} className={`${pageText} hover:underline font-mono text-sm transition-all duration-200`}>.skills()</a>
             <a href="#xp" onClick={(e) => handleNavClick(e, '#xp')} className={`${pageText} hover:underline font-mono text-sm transition-all duration-200`}>.xp()</a>
             <a href="#projects" onClick={(e) => handleNavClick(e, '#projects')} className={`${pageText} hover:underline font-mono text-sm transition-all duration-200`}>.projects()</a>
-            <a href="#timeline" onClick={(e) => handleNavClick(e, '#timeline')} className={`${pageText} hover:underline font-mono text-sm transition-all duration-200`}>.timeline()</a>
+            <a href="#timeline" onClick={(e) => handleNavClick(e, '#timeline')} className={`${pageText} hover:underline font-mono text-sm transition-all duration-200`}>.trainings()</a>
           </div>
 
           <div className="flex items-center gap-3">
@@ -143,7 +143,7 @@ export default function Home() {
                   <a onClick={(e) => handleNavClick(e, '#skills')} href="#skills" className={`block px-4 py-3 rounded-lg text-base font-semibold ${pageText} hover:underline`}>.skills()</a>
                   <a onClick={(e) => handleNavClick(e, '#xp')} href="#xp" className={`block px-4 py-3 rounded-lg text-base font-semibold ${pageText} hover:underline`}>.xp()</a>
                   <a onClick={(e) => handleNavClick(e, '#projects')} href="#projects" className={`block px-4 py-3 rounded-lg text-base font-semibold ${pageText} hover:underline`}>.projects()</a>
-                  <a onClick={(e) => handleNavClick(e, '#timeline')} href="#timeline" className={`block px-4 py-3 rounded-lg text-base font-semibold ${pageText} hover:underline`}>.timeline()</a>
+                  <a onClick={(e) => handleNavClick(e, '#timeline')} href="#timeline" className={`block px-4 py-3 rounded-lg text-base font-semibold ${pageText} hover:underline`}>.trainings()</a>
                 </nav>
 
                 <div className="mt-6 border-t pt-4 flex items-center justify-between">
@@ -286,29 +286,58 @@ export default function Home() {
           </section>
 
           <section id="timeline" className="mb-16">
-            <h2 className={`text-2xl sm:text-3xl font-bold mb-6 font-mono ${pageText}`}>.timeline()</h2>
+            <h2 className={`text-2xl sm:text-3xl font-bold mb-6 font-mono ${pageText}`}>.trainings()</h2>
+
             <div className="space-y-6">
               <div className="flex gap-4 flex-col sm:flex-row">
-                <div className={`${muted} font-mono text-sm min-w-[100px]`}>2024</div>
+                <div className={`${muted} font-mono text-sm min-w-[100px]`}>Sep 2024 - Dec 2024</div>
                 <div className="flex-1">
-                  <p className={`${pageText} font-semibold mb-1`}>Launched new portfolio</p>
-                  <p className={`${muted}`}>Redesigned personal website with modern tech stack</p>
+                  <p className={`${pageText} font-semibold mb-1`}>BlockJump Kosovo — Blockchain training</p>
+                  <p className={`${muted}`}>DLT, Blockchain programming, Solidity</p>
                 </div>
               </div>
+
               <div className="flex gap-4 flex-col sm:flex-row">
-                <div className={`${muted} font-mono text-sm min-w-[100px]`}>2023</div>
+                <div className={`${muted} font-mono text-sm min-w-[100px]`}>Jun 2024 - Jul 2024</div>
                 <div className="flex-1">
-                  <p className={`${pageText} font-semibold mb-1`}>Open source contributions</p>
-                  <p className={`${muted}`}>Started contributing to major open source projects</p>
+                  <p className={`${pageText} font-semibold mb-1`}>AUK — Python API & Django</p>
+                  <p className={`${muted}`}>RESTful APIs, Django, MySQL</p>
                 </div>
               </div>
+
               <div className="flex gap-4 flex-col sm:flex-row">
-                <div className={`${muted} font-mono text-sm min-w-[100px]`}>2022</div>
+                <div className={`${muted} font-mono text-sm min-w-[100px]`}>Nov 2023 - Jan 2024</div>
                 <div className="flex-1">
-                  <p className={`${pageText} font-semibold mb-1`}>Career advancement</p>
-                  <p className={`${muted}`}>Promoted to Senior Developer role</p>
+                  <p className={`${pageText} font-semibold mb-1`}>Beetroot Academy Kosovo — Web App Dev</p>
+                  <p className={`${muted}`}>React, Next.js, Express, Node, MongoDB, REST APIs</p>
                 </div>
               </div>
+
+              <div className="flex gap-4 flex-col sm:flex-row">
+                <div className={`${muted} font-mono text-sm min-w-[100px]`}>Oct 2022 - Feb 2023</div>
+                <div className="flex-1">
+                  <p className={`${pageText} font-semibold mb-1`}>Kosovo ICT — Java & Mobile</p>
+                  <p className={`${muted}`}>Java, Android Studio, Firebase, SQLite</p>
+                </div>
+              </div>
+
+              <div className="flex gap-4 flex-col sm:flex-row">
+                <div className={`${muted} font-mono text-sm min-w-[100px]`}>May 2018 - Aug 2018</div>
+                <div className="flex-1">
+                  <p className={`${pageText} font-semibold mb-1`}>DigitalStrom — Smart Home</p>
+                  <p className={`${muted}`}>Smart Home certificate</p>
+                </div>
+              </div>
+
+              <div className="flex gap-4 flex-col sm:flex-row">
+                <div className={`${muted} font-mono text-sm min-w-[100px]`}>Jan 2017 - Mar 2017</div>
+                <div className="flex-1">
+                  <p className={`${pageText} font-semibold mb-1`}>American Corner — STEM series</p>
+                  <p className={`${muted}`}>Networking, Arduino, IoT, 3D printing</p>
+                </div>
+              </div>
+
+              
             </div>
           </section>
         </main>
