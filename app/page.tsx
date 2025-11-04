@@ -5,33 +5,37 @@ import { useEffect, useState } from "react"
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [theme, setTheme] = useState<'light'|'dark'>('dark')
+  const [theme, setTheme] = useState<'light' | 'dark' | 'black'>('dark')
 
   useEffect(() => {
     const stored = typeof window !== 'undefined' ? localStorage.getItem('theme') : null
-    if (stored === 'light' || stored === 'dark') {
+    if (stored === 'light' || stored === 'dark' || stored === 'black') {
       setTheme(stored)
     }
-    // if nothing stored, keep initial 'dark' (no system pref override)
+    // if nothing stored, keep initial 'dark'
   }, [])
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       localStorage.setItem('theme', theme)
-      // optional: add class to html for global styling if needed
+      // expose theme on <html> for any global rules if needed
       document.documentElement.dataset.theme = theme
     }
   }, [theme])
 
-  const toggleTheme = () => setTheme(t => t === 'light' ? 'dark' : 'light')
+  // cycle: dark -> black -> light -> dark
+  const toggleTheme = () => {
+    setTheme(t => (t === 'dark' ? 'light' : t === 'light' ? 'black' : 'dark'))
+  }
 
   const isLight = theme === 'light'
-  const bgClass = isLight ? 'bg-white' : 'bg-red-900'
+  const isBlack = theme === 'black'
+  const bgClass = isLight ? 'bg-white' : isBlack ? 'bg-black' : 'bg-red-900'
   const pageText = isLight ? 'text-black' : 'text-white'
-  const muted = isLight ? 'text-black/60' : 'text-white/70'
-  const cardBg = isLight ? 'bg-gray-50' : 'bg-white/10'
-  const border = isLight ? 'border-black/10' : 'border-black/20'
-  // When dark mode, invert and boost contrast so monochrome SVG logos become white
+  const muted = isLight ? 'text-black/60' : isBlack ? 'text-white/65' : 'text-white/70'
+  const cardBg = isLight ? 'bg-gray-50' : isBlack ? 'bg-white/5' : 'bg-white/10'
+  const border = isLight ? 'border-black/10' : isBlack ? 'border-white/10' : 'border-black/20'
+  // When dark or black mode, invert and boost contrast so monochrome SVG logos become white
   const iconFilter = isLight ? '' : 'filter invert contrast-125'
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
@@ -74,10 +78,12 @@ export default function Home() {
               onClick={toggleTheme}
               aria-label="Toggle theme"
               className={`p-2 rounded-md border ${border} ${cardBg} flex items-center justify-center transition`}
-              title={isLight ? 'Switch to dark' : 'Switch to light'}
+              title={isLight ? 'Light (active) — click to go to dark' : isBlack ? 'Black (active) — click to go to light' : 'Dark (active) — click to go to black'}
             >
               {isLight ? (
                 <svg className="w-5 h-5 text-yellow-500" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M12 3v2M12 19v2M5.2 5.2l1.4 1.4M17.4 17.4l1.4 1.4M3 12h2M19 12h2M5.2 18.8l1.4-1.4M17.4 6.6l1.4-1.4M12 7a5 5 0 100 10 5 5 0 000-10z"/></svg>
+              ) : isBlack ? (
+                <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="8" /></svg>
               ) : (
                 <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
               )}
@@ -117,10 +123,12 @@ export default function Home() {
                       onClick={toggleTheme}
                       aria-label="Toggle theme"
                       className={`p-2 rounded-md border ${border} ${cardBg} flex items-center justify-center`}
-                      title={isLight ? 'Switch to dark' : 'Switch to light'}
+                      title={isLight ? 'Light (active)' : isBlack ? 'Black (active)' : 'Dark (active)'}
                     >
                       {isLight ? (
                         <svg className="w-5 h-5 text-yellow-500" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M12 3v2M12 19v2M5.2 5.2l1.4 1.4M17.4 17.4l1.4 1.4M3 12h2M19 12h2M5.2 18.8l1.4-1.4M17.4 6.6l1.4-1.4M12 7a5 5 0 100 10 5 5 0 000-10z"/></svg>
+                      ) : isBlack ? (
+                        <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="8" /></svg>
                       ) : (
                         <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
                       )}
@@ -336,8 +344,6 @@ export default function Home() {
                   <p className={`${muted}`}>Networking, Arduino, IoT, 3D printing</p>
                 </div>
               </div>
-
-              
             </div>
           </section>
         </main>
