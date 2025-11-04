@@ -257,14 +257,14 @@ export default function Home() {
             <h2 className={`text-2xl sm:text-3xl font-bold mb-6 font-mono ${pageText}`}>.projects()</h2>
             <div className="grid gap-6 max-w-3xl mx-auto">
               <a
-                href="https://github.com/ArberZe/MealPath.OrderManagement"
+                href="https://github.com/erionismajli/MealPath.OrderManagement"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`group block overflow-hidden rounded-xl border ${border} ${cardBg} backdrop-blur-sm transition-all hover:opacity-95`}
               >
                 <div className="relative overflow-hidden">
                   <Image
-                    src="https://arberdev.com/mealpath.png?height=250&width=350"
+                    src="/images/mealpath.png"
                     alt="MealPath.OrderManagement"
                     width={1200}
                     height={675}
@@ -277,7 +277,7 @@ export default function Home() {
                     <h3 className={`text-lg sm:text-2xl font-bold ${pageText}`}>MealPath.OrderManagement</h3>
                     <span className={`${muted} font-mono text-sm`}>→</span>
                   </div>
-                  <p className={`${muted} mb-3 text-sm font-mono`}>github.com/ArberZe/MealPath.OrderManagement</p>
+                  <p className={`${muted} mb-3 text-sm font-mono`}>https://github.com/erionismajli/MealPath.OrderManagement</p>
                   <p className={`${pageText} mb-4 leading-relaxed text-sm sm:text-base`}>
                     An order management system for Italian style pizza built with ASP.NET Core and React. Features user authentication with .NET Identity, role-based access (User, Admin, SuperAdmin), content management, and Stripe payment integration.
                   </p>
