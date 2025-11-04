@@ -56,8 +56,8 @@ export default function Home() {
 
   return (
     <div className={`min-h-screen relative overflow-hidden ${bgClass}`}>
-      <div className="absolute inset-0 opacity-15 pointer-events-none grain-texture" />
-
+      {/* <div className="absolute inset-0 opacity-15 pointer-events-none grain-texture" /> */}
+      <div className="fixed inset-0 opacity-15 pointer-events-none grain-texture" />
       <div className="relative z-10">
         <nav className="flex items-center justify-between px-6 sm:px-6 md:px-6 py-6 max-w-6xl mx-auto">
           <div className="flex items-center gap-4">
