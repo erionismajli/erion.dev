@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [theme, setTheme] = useState<'light' | 'dark' | 'black'>('dark')
+  const [theme, setTheme] = useState<'light' | 'dark' | 'black'>('black')
 
   useEffect(() => {
     const stored = typeof window !== 'undefined' ? localStorage.getItem('theme') : null
@@ -25,7 +25,7 @@ export default function Home() {
 
   // cycle: dark -> black -> light -> dark
   const toggleTheme = () => {
-    setTheme(t => (t === 'dark' ? 'light' : t === 'light' ? 'black' : 'dark'))
+    setTheme(t => (t === 'black' ? 'light' : t === 'light' ? 'dark' : 'black'))
   }
 
   const isLight = theme === 'light'
