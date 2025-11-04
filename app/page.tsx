@@ -264,7 +264,7 @@ export default function Home() {
               >
                 <div className="relative overflow-hidden">
                   <Image
-                    src="/images/mealpath.png"
+                    src="/mealpath.png"
                     alt="MealPath.OrderManagement"
                     width={1200}
                     height={675}
