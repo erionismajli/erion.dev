@@ -1,11 +1,23 @@
 'use client'
 
 import Image from "next/image"
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [navScrolled, setNavScrolled] = useState(false)
   const [theme, setTheme] = useState<'light' | 'dark' | 'black'>('black')
+
+  // nav scroll shadow / compact state
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const onScroll = () => {
+      setNavScrolled(window.scrollY > 24)
+    }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   useEffect(() => {
     const stored = typeof window !== 'undefined' ? localStorage.getItem('theme') : null
@@ -59,18 +71,20 @@ export default function Home() {
       {/* <div className="absolute inset-0 opacity-15 pointer-events-none grain-texture" /> */}
       <div className="fixed inset-0 opacity-15 pointer-events-none grain-texture" />
       <div className="relative z-10">
-        <nav className="flex items-center justify-between px-6 sm:px-6 md:px-6 py-6 max-w-6xl mx-auto">
+        <nav className={`nav-animated flex items-center justify-between px-6 sm:px-6 md:px-6 py-6 max-w-6xl mx-auto ${navScrolled ? 'nav-scrolled' : ''}`}>
           <div className="flex items-center gap-4">
             <div className={`text-lg font-mono font-bold ${pageText}`}>Erion Ismajli</div>
           </div>
+            
+
 
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-6">
-            <a href="#home" onClick={(e) => handleNavClick(e, '#home')} className={`${pageText} hover:underline font-mono text-sm transition-all duration-200`}>.getAbout()</a>
-            <a href="#skills" onClick={(e) => handleNavClick(e, '#skills')} className={`${pageText} hover:underline font-mono text-sm transition-all duration-200`}>.skills()</a>
-            <a href="#xp" onClick={(e) => handleNavClick(e, '#xp')} className={`${pageText} hover:underline font-mono text-sm transition-all duration-200`}>.xp()</a>
-            <a href="#projects" onClick={(e) => handleNavClick(e, '#projects')} className={`${pageText} hover:underline font-mono text-sm transition-all duration-200`}>.projects()</a>
-            <a href="#timeline" onClick={(e) => handleNavClick(e, '#timeline')} className={`${pageText} hover:underline font-mono text-sm transition-all duration-200`}>.trainings()</a>
+            <a href="#home" onClick={(e) => handleNavClick(e, '#home')} className={`nav-item ${pageText}`}>.getAbout()</a>
+            <a href="#skills" onClick={(e) => handleNavClick(e, '#skills')} className={`nav-item ${pageText}`}>.skills()</a>
+            <a href="#xp" onClick={(e) => handleNavClick(e, '#xp')} className={`nav-item ${pageText}`}>.xp()</a>
+            <a href="#projects" onClick={(e) => handleNavClick(e, '#projects')} className={`nav-item ${pageText}`}>.projects()</a>
+            <a href="#timeline" onClick={(e) => handleNavClick(e, '#timeline')} className={`nav-item ${pageText}`}>.trainings()</a>
           </div>
 
           <div className="flex items-center gap-3">
@@ -220,13 +234,13 @@ export default function Home() {
                 { name: "MongoDB", icon: "mongodb", label: "mongodb" },
                 { name: "Tailwind CSS", icon: "tailwindcss", label: "tailwindcss" },
               ].map((skill) => (
-                <div key={skill.name} className="flex flex-col items-center justify-center gap-2">
+                <div key={skill.name} className="group flex flex-col items-center justify-center gap-2">
                   <img
                     src={`https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/${skill.icon}.svg`}
                     alt={skill.name}
-                    className={`w-20 h-20 ${iconFilter}`}
+                    className={`w-20 h-20 transform-gpu transition duration-300 ease-out group-hover:scale-110 group-hover:rotate-6 group-hover:-translate-y-1 ${iconFilter}`}
                   />
-                  <span className={`font-mono text-sm ${pageText}`}>.{skill.label}()</span>
+                  <span className={`font-mono text-sm ${pageText} transition-transform duration-200 group-hover:-translate-y-1`}>.{skill.label}()</span>
                 </div>
               ))}
             </div>
