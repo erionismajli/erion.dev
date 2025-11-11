@@ -46,24 +46,30 @@ export default function Home() {
   const pageText = isLight ? 'text-black' : 'text-white'
   const muted = isLight ? 'text-black/60' : isBlack ? 'text-white/65' : 'text-white/70'
   const cardBg = isLight ? 'bg-gray-50' : isBlack ? 'bg-white/5' : 'bg-white/10'
+  const AnimatedNavBg = isLight ? 'bg-gray-50' : isBlack ? 'bg-black/90' : 'bg-red-900/60'
   const border = isLight ? 'border-black/10' : isBlack ? 'border-white/10' : 'border-black/20'
   // When dark or black mode, invert and boost contrast so monochrome SVG logos become white
   const iconFilter = isLight ? '' : 'filter invert contrast-125'
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault()
+    e.stopPropagation()
     setMenuOpen(false)
-    const element = document.querySelector(targetId)
-    if (element) {
-      const offset = 80
-      const elementPosition = element.getBoundingClientRect().top
-      const offsetPosition = elementPosition + window.pageYOffset - offset
+    
+    // Small delay to ensure DOM is ready
+    setTimeout(() => {
+      const element = document.querySelector(targetId)
+      if (element) {
+        const offset = 120
+        const elementPosition = element.getBoundingClientRect().top
+        const offsetPosition = elementPosition + window.pageYOffset - offset
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      })
-    }
+        window.scrollTo({
+          top: Math.max(0, offsetPosition),
+          behavior: 'smooth'
+        })
+      }
+    }, 10)
   }
 
   return (
@@ -71,27 +77,17 @@ export default function Home() {
       {/* <div className="absolute inset-0 opacity-15 pointer-events-none grain-texture" /> */}
       <div className="fixed inset-0 opacity-15 pointer-events-none grain-texture" />
       <div className="relative z-10">
-        <nav className={`nav-animated flex items-center justify-between px-6 sm:px-6 md:px-6 py-6 max-w-6xl mx-auto ${navScrolled ? 'nav-scrolled' : ''}`}>
+        {/* Static header with name and theme toggle */}
+        <div className=" flex items-center justify-between px-6 sm:px-6 md:px-6 py-4 max-w-6xl mx-auto">
           <div className="flex items-center gap-4">
             <div className={`text-lg font-mono font-bold ${pageText}`}>Erion Ismajli</div>
-          </div>
-            
-
-
-          {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-6">
-            <a href="#home" onClick={(e) => handleNavClick(e, '#home')} className={`nav-item ${pageText}`}>.getAbout()</a>
-            <a href="#skills" onClick={(e) => handleNavClick(e, '#skills')} className={`nav-item ${pageText}`}>.skills()</a>
-            <a href="#xp" onClick={(e) => handleNavClick(e, '#xp')} className={`nav-item ${pageText}`}>.xp()</a>
-            <a href="#projects" onClick={(e) => handleNavClick(e, '#projects')} className={`nav-item ${pageText}`}>.projects()</a>
-            <a href="#timeline" onClick={(e) => handleNavClick(e, '#timeline')} className={`nav-item ${pageText}`}>.trainings()</a>
           </div>
 
           <div className="flex items-center gap-3">
             <button
               onClick={toggleTheme}
               aria-label="Toggle theme"
-              className={`p-2 rounded-md border ${border} ${cardBg} flex items-center justify-center transition`}
+              className={`p-2 rounded-md border ${border} ${cardBg} flex items-center justify-center transition cursor-pointer`}
               title={isLight ? 'Light (active) — click to go to dark' : isBlack ? 'Black (active) — click to go to light' : 'Dark (active) — click to go to black'}
             >
               {isLight ? (
@@ -114,6 +110,16 @@ export default function Home() {
               </svg>
             </button>
           </div>
+        </div>
+
+        {/* Fixed navigation bar with buttons only */}
+        {/* <nav className={`nav-animated hidden md:flex items-center gap-6 px-8 ${navScrolled ? `nav-scrolled ${cardBg} ${border} rounded-2xl` : ''}`} style={{ pointerEvents: 'auto' }}> */}
+        <nav className={`nav-animated hidden md:flex items-center gap-6 px-8 ${navScrolled ? `nav-scrolled ${AnimatedNavBg} ${border} rounded-2xl` : ''}`} style={{ pointerEvents: 'auto' }}>
+          <a href="#home" onClick={(e) => handleNavClick(e, '#home')} className={`nav-item ${pageText} cursor-pointer`} style={{ pointerEvents: 'auto', zIndex: 51 }}>.getAbout()</a>
+          <a href="#skills" onClick={(e) => handleNavClick(e, '#skills')} className={`nav-item ${pageText} cursor-pointer`} style={{ pointerEvents: 'auto', zIndex: 51 }}>.skills()</a>
+          <a href="#xp" onClick={(e) => handleNavClick(e, '#xp')} className={`nav-item ${pageText} cursor-pointer`} style={{ pointerEvents: 'auto', zIndex: 51 }}>.xp()</a>
+          <a href="#projects" onClick={(e) => handleNavClick(e, '#projects')} className={`nav-item ${pageText} cursor-pointer`} style={{ pointerEvents: 'auto', zIndex: 51 }}>.projects()</a>
+          <a href="#timeline" onClick={(e) => handleNavClick(e, '#timeline')} className={`nav-item ${pageText} cursor-pointer`} style={{ pointerEvents: 'auto', zIndex: 51 }}>.trainings()</a>
         </nav>
 
         {/* Mobile nav: full-screen overlay + slide-down panel */}
@@ -184,7 +190,7 @@ export default function Home() {
           </div>
         )}
 
-        <main className="container mx-auto px-6 py-12 max-w-4xl">
+        <main className="container mx-auto px-6 py-12 max-w-4xl pt-24">
           <section id="home" className={`min-h-[60vh] flex flex-col justify-center mb-20 font-mono ${pageText}`}>
             <div className="flex flex-col items-center mb-6">
               <div className="relative w-40 h-40 sm:w-44 sm:h-44 md:w-48 md:h-48 mb-4 rounded-full overflow-hidden border border-black/30">
